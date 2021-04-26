@@ -1,3 +1,10 @@
 syntax: glob
 et_xmlfile.egg-info
 doc/api
+bin/
+lib/
+.tox/
+*.pyc
+.gitignore
+dist/
+pyvenv.cfg
