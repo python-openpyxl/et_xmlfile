@@ -1,2 +1,3 @@
 syntax: glob
 et_xmlfile.egg-info
+doc/api
