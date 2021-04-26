@@ -21,14 +21,8 @@ them here.
 import codecs
 import sys
 import os
-import warnings
-if sys.version_info < (2, 6):
-    raise Exception("Python >= 2.6 is required.")
-elif sys.version_info[:2] == (3, 2):
-    warnings.warn("Python 3.2 is no longer officially supported")
 
-from setuptools import setup, Extension, find_packages
-import re
+from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
 try:
@@ -36,6 +30,8 @@ try:
         README = f.read()
 except IOError:
     README = ''
+
+sys.path.append('')
 
 from et_xmlfile import (
     __author__,
@@ -56,9 +52,7 @@ setup(name='et_xmlfile',
     author_email=__author_email__,
     url=__url__,
     license=__license__,
-    requires=[
-        'python (>=2.6.0)',
-        ],
+    python_requires=">=3.6",
     classifiers=[
                  'Development Status :: 5 - Production/Stable',
                  'Operating System :: MacOS :: MacOS X',
