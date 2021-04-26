@@ -2,28 +2,36 @@
 
 """Setup script for packaging et_xmfile.
 
+Requires setuptools.
 
-To build the sdist use
-    python setup.py sdist
-Then create a wheel
-    pip wheel dist/*
+To build the setuptools egg use
+    python setup.py bdist_egg
 and either upload it to the PyPI with:
-    twine
+    python setup.py upload
+or upload to your own server and register the release with PyPI:
+    python setup.py register
+
+A source distribution (.zip) can be built with
+    python setup.py sdist --format=zip
 
 That uses the manifest.in file for data files rather than searching for
 them here.
 
 """
+import codecs
+import sys
 import os
 
 from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
 try:
-    with open(os.path.join(here, 'README.rst'), "r") as f:
+    with codecs.open(os.path.join(here, 'README.rst'), encoding="utf-8") as f:
         README = f.read()
 except IOError:
     README = ''
+
+sys.path.append('')
 
 from et_xmlfile import (
     __author__,
@@ -44,7 +52,7 @@ setup(name='et_xmlfile',
     author_email=__author_email__,
     url=__url__,
     license=__license__,
-    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+    python_requires=">=3.6",
     classifiers=[
                  'Development Status :: 5 - Production/Stable',
                  'Operating System :: MacOS :: MacOS X',
@@ -52,8 +60,9 @@ setup(name='et_xmlfile',
                  'Operating System :: POSIX',
                  'License :: OSI Approved :: MIT License',
                  'Programming Language :: Python',
+                 'Programming Language :: Python :: 2.6',
                  'Programming Language :: Python :: 2.7',
-                 'Programming Language :: Python :: 3.6',
-                 'Programming Language :: Python :: 3.7',
+                 'Programming Language :: Python :: 3.3',
+                 'Programming Language :: Python :: 3.4',
                  ],
     )
