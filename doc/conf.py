@@ -241,3 +241,23 @@ import os
 os.chdir("..")
 shutil.rmtree("tmp")
 """
+
+import shutil
+
+def run_apidoc(_):
+    try:
+        from sphinx.ext.apidoc import main
+    except ImportError:
+        from sphinx.apidoc import main
+
+    cur_dir = os.path.abspath(os.path.dirname(__file__))
+    output_path = os.path.join(cur_dir, 'api')
+    shutil.rmtree(output_path, ignore_errors=True)
+    modules = os.path.dirname(et_xmlfile.__file__)
+    exclusions = [
+        '../et_xmlfile/tests',
+    ]
+    main(['-f', '-T', '-e', '-M', '-o', output_path, modules] + exclusions)
+
+def setup(app):
+    app.connect('builder-inited', run_apidoc)
